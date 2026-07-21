@@ -1,0 +1,12 @@
+{
+  "updated": "2026-07-20T06:00:00+09:00",
+  "url": "",
+  "items": [
+    { "tag": "テスト", "title": "これは表示確認用のサンプルです", "priority": true },
+    { "tag": "南シナ海", "title": "二件目のダミー見出し", "priority": false },
+    { "tag": "日米同盟", "title": "三件目のダミー見出し", "priority": false },
+    { "tag": "朝鮮半島", "title": "四件目のダミー見出し", "priority": false },
+    { "tag": "経済安保", "title": "五件目のダミー見出し", "priority": false },
+    { "tag": "国内政治", "title": "六件目のダミー見出し", "priority": false }
+  ]
+}

@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>外交ブリーフィング</title>
+  <style>
+    :root {
+      --bg: #0f172a;
+      --card: #1e293b;
+      --card-priority: #7f1d1d;
+      --text: #e2e8f0;
+      --muted: #94a3b8;
+      --accent: #38bdf8;
+      --tag-bg: #334155;
+      --border: #334155;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Hiragino Kaku Gothic ProN", "Yu Gothic", "Meiryo", system-ui, -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+    .wrap {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 24px 16px 64px;
+    }
+    header {
+      border-bottom: 2px solid var(--accent);
+      padding-bottom: 16px;
+      margin-bottom: 24px;
+    }
+    h1 {
+      margin: 0;
+      font-size: 1.6rem;
+      letter-spacing: 0.04em;
+    }
+    .updated {
+      color: var(--muted);
+      font-size: 0.85rem;
+      margin-top: 6px;
+    }
+    ul { list-style: none; margin: 0; padding: 0; }
+    li {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 14px 16px;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      transition: transform 0.1s ease;
+    }
+    li:hover { transform: translateX(2px); }
+    li.priority {
+      background: var(--card-priority);
+      border-color: #ef4444;
+    }
+    .tag {
+      flex: 0 0 auto;
+      background: var(--tag-bg);
+      color: var(--accent);
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 3px 10px;
+      border-radius: 999px;
+      white-space: nowrap;
+      margin-top: 2px;
+    }
+    li.priority .tag { background: #991b1b; color: #fecaca; }
+    .title { flex: 1 1 auto; font-size: 1.02rem; }
+    .star { color: #fbbf24; margin-left: 4px; }
+    .status {
+      color: var(--muted);
+      text-align: center;
+      padding: 32px 0;
+    }
+    footer {
+      margin-top: 32px;
+      color: var(--muted);
+      font-size: 0.8rem;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <h1>外交ブリーフィング</h1>
+      <div class="updated" id="updated">読み込み中…</div>
+    </header>
+    <ul id="list"></ul>
+    <div class="status" id="status"></div>
+    <footer>Diplomacy Briefing &mdash; 表示確認用サンプル</footer>
+  </div>
+
+  <script>
+    function formatUpdated(iso) {
+      if (!iso) return "";
+      const d = new Date(iso);
+      if (isNaN(d)) return iso;
+      const pad = (n) => String(n).padStart(2, "0");
+      return `${d.getFullYear()}/${pad(d.getMonth() + 1)}/${pad(d.getDate())} ` +
+             `${pad(d.getHours())}:${pad(d.getMinutes())}`;
+    }
+
+    function render(data) {
+      const items = Array.isArray(data.items) ? data.items : [];
+      document.getElementById("updated").textContent =
+        "更新: " + (formatUpdated(data.updated) || "不明");
+
+      const list = document.getElementById("list");
+      list.innerHTML = "";
+
+      // Priority items first, keeping original order within each group.
+      const sorted = items
+        .map((item, i) => ({ item, i }))
+        .sort((a, b) => (b.item.priority === true) - (a.item.priority === true) || a.i - b.i)
+        .map((x) => x.item);
+
+      for (const item of sorted) {
+        const li = document.createElement("li");
+        if (item.priority) li.classList.add("priority");
+
+        const tag = document.createElement("span");
+        tag.className = "tag";
+        tag.textContent = item.tag || "—";
+
+        const title = document.createElement("span");
+        title.className = "title";
+        title.textContent = item.title || "(無題)";
+        if (item.priority) {
+          const star = document.createElement("span");
+          star.className = "star";
+          star.textContent = "★";
+          star.title = "重要";
+          title.appendChild(star);
+        }
+
+        li.appendChild(tag);
+        li.appendChild(title);
+        list.appendChild(li);
+      }
+
+      document.getElementById("status").textContent =
+        items.length ? "" : "表示できる項目がありません。";
+    }
+
+    fetch("data.json", { cache: "no-store" })
+      .then((r) => {
+        if (!r.ok) throw new Error("HTTP " + r.status);
+        return r.json();
+      })
+      .then(render)
+      .catch((err) => {
+        document.getElementById("updated").textContent = "";
+        document.getElementById("status").textContent =
+          "データの読み込みに失敗しました: " + err.message;
+      });
+  </script>
+</body>
+</html>
