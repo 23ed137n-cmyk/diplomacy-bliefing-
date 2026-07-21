@@ -1,11 +1,34 @@
 # diplomacy-briefing
 
-外交ブリーフィングの見出しを表示するシンプルな静的サイトです。
+外交モーニング・ブリーフィングの見出しを表示する仕組み一式です。
+毎朝のブリーフィング生成タスクが JSON を出力し、ブラウザ画面と
+iPhone ウィジェットの両方がその JSON を読み込んで見出しを表示します。
 
 ## 構成
 
-- `index.html` — `data.json` を読み込んで見出し一覧を表示する画面
+- `index.html` — `data.json` を読み込んで見出し一覧を表示するブラウザ画面
 - `data.json` — 表示するデータ（`updated`, `url`, `items[]`）
+- `gaiko-brief-widget.js` — Scriptable（iPhone）用ウィジェット。
+  Google Drive の `gaiko-brief.json`（またはローカルの同名ファイル）を読む
+- ブリーフィング生成タスクは、本文作成後に同じスキーマの `gaiko-brief.json` を
+  出力する（Google Drive 上書き保存）。`data.json` はそのブラウザ確認用サンプル
+
+## iPhone ウィジェットの設定（`gaiko-brief-widget.js`）
+
+1. iPhone に Scriptable（無料）をインストールする。
+2. `gaiko-brief-widget.js` の中身を新規スクリプトとして貼り付け、名前を「外交速報」にする。
+3. Google Drive の `gaiko-brief.json` を「リンクを知っている全員が閲覧可」で共有し、
+   共有URLからファイルIDを取り出して、スクリプト先頭の `SOURCE_URL` に次の形式で入れる。
+
+   ```
+   https://drive.google.com/uc?export=download&id=【ファイルID】
+   ```
+
+4. ホーム画面を長押し → ＋ → Scriptable → 大サイズを配置 → ウィジェットを長押しして
+   「ウィジェットを編集」→ Script に「外交速報」を指定する。
+
+`SOURCE_URL` を空にした場合は、iCloud Drive の Scriptable フォルダに置いた
+`gaiko-brief.json` を読む（手動運用・Drive を使わない場合）。
 
 ### `data.json` のスキーマ
 
