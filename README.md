@@ -53,3 +53,28 @@ iPhone ウィジェットの両方がその JSON を読み込んで見出しを�
 python3 -m http.server 8000
 # ブラウザで http://localhost:8000/ を開く
 ```
+
+## NotebookLM スキル（Claude Code）
+
+このリポジトリには、Google NotebookLM を使った出典付きリサーチを自動化する
+Claude Code スキル [`notebooklm-research`](https://github.com/claude-world/notebooklm-skill)
+を組み込んでいます。ブリーフィングの下調べ（ソースからの引用付き回答、
+リサーチ→記事化、ポッドキャスト/スライド等の生成）に利用できます。
+
+- `.claude/skills/notebooklm-research/SKILL.md` — スキル本体（プロジェクトスコープ）。
+  Claude Code がリサーチ系の依頼を検知すると自動で読み込みます。
+- `.mcp.json` — NotebookLM の MCP サーバー（13 ツール）を登録。Claude Code 起動時に
+  `uvx --from notebooklm-skill notebooklm-mcp` で立ち上がります。
+
+### 事前準備
+
+MCP ツール／CLI を実際に動かすには `uvx`（[uv](https://github.com/astral-sh/uv)）が必要で、
+初回は NotebookLM へのログインが必要です。
+
+```sh
+# ゼロインストールでのログイン（ブラウザが開きます）
+uvx --from notebooklm-py notebooklm login
+```
+
+詳しいコマンドやアーティファクト生成の使い方は
+`.claude/skills/notebooklm-research/SKILL.md` を参照してください。
