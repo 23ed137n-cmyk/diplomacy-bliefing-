@@ -9,26 +9,54 @@ iPhone ウィジェットの両方がその JSON を読み込んで見出しを�
 - `index.html` — `data.json` を読み込んで見出し一覧を表示するブラウザ画面
 - `data.json` — 表示するデータ（`updated`, `url`, `items[]`）
 - `gaiko-brief-widget.js` — Scriptable（iPhone）用ウィジェット。
-  Google Drive の `gaiko-brief.json`（またはローカルの同名ファイル）を読む
+  公開URL（GitHub Pages / Google Drive）またはローカルの `gaiko-brief.json` を読む
+- `manifest.webmanifest` / `icon.svg` / `icon-192.png` / `icon-512.png` —
+  PWA（アプリ化）用のマニフェストとアイコン。Windows で Edge の「アプリとして
+  インストール」に使う
 - ブリーフィング生成タスクは、本文作成後に同じスキーマの `gaiko-brief.json` を
-  出力する（Google Drive 上書き保存）。`data.json` はそのブラウザ確認用サンプル
+  出力する。`data.json` はそのブラウザ確認用サンプル（両ファイルは同一内容で更新）
 
-## iPhone ウィジェットの設定（`gaiko-brief-widget.js`）
+## 配信（GitHub Pages）と PC・iPhone ウィジェット
 
-1. iPhone に Scriptable（無料）をインストールする。
-2. `gaiko-brief-widget.js` の中身を新規スクリプトとして貼り付け、名前を「外交速報」にする。
-3. Google Drive の `gaiko-brief.json` を「リンクを知っている全員が閲覧可」で共有し、
-   共有URLからファイルIDを取り出して、スクリプト先頭の `SOURCE_URL` に次の形式で入れる。
+PC と iPhone の両方に「同じ1つの公開URL」を読ませるのが基本形。GitHub Pages で
+このリポジトリを公開すると、ブラウザ画面もウィジェット用 JSON も同じ場所から配信できる。
 
-   ```
-   https://drive.google.com/uc?export=download&id=【ファイルID】
-   ```
+### 1. GitHub Pages を有効化（配信元）
 
-4. ホーム画面を長押し → ＋ → Scriptable → 大サイズを配置 → ウィジェットを長押しして
-   「ウィジェットを編集」→ Script に「外交速報」を指定する。
+1. GitHub のリポジトリ → **Settings → Pages**。
+2. **Source** を「Deploy from a branch」にし、Branch = 公開したいブランチ（`main` など）、
+   フォルダ = **/(root)** を選んで Save。
+   - まだ既定ブランチに取り込んでいない場合は、作業ブランチを `main` にマージしてから
+     設定するのが簡単（または Pages の Branch に作業ブランチを直接指定してもよい）。
+3. 数十秒〜数分で公開される。公開URLは:
+   - 画面: `https://23ed137n-cmyk.github.io/diplomacy-bliefing-/`
+   - データ: `https://23ed137n-cmyk.github.io/diplomacy-bliefing-/gaiko-brief.json`
+4. 以降は `git push` するたびに自動更新（生成タスクが両 JSON を更新 → push）。
 
-`SOURCE_URL` を空にした場合は、iCloud Drive の Scriptable フォルダに置いた
-`gaiko-brief.json` を読む（手動運用・Drive を使わない場合）。
+### 2. iPhone：ホーム画面ウィジェット（Scriptable）
+
+1. iPhone に **Scriptable**（無料）をインストール。
+2. `gaiko-brief-widget.js` の中身を新規スクリプトに貼り付け、名前を「外交速報」に。
+   - 先頭の `SOURCE_URL` は上記 Pages URL を指定済み（Drive を使う場合のみ差し替え）。
+3. ホーム画面を長押し → ＋ → **Scriptable** → 大サイズを配置 → ウィジェットを長押し →
+   「ウィジェットを編集」→ Script に「外交速報」を指定。地域・タグ・優先度が反映される。
+
+`SOURCE_URL` を空にすると iCloud Drive の Scriptable フォルダの `gaiko-brief.json` を読む
+（Drive/Pages を使わない手動運用）。Drive を使う場合は
+`https://drive.google.com/uc?export=download&id=【ファイルID】` を入れる。
+
+### 3. Windows：ホーム画面（スタート／タスクバー）
+
+Windows には自作Web内容の純正ウィジェット枠がないため、**Edge でページを「アプリ」として
+インストール**して常駐させるのが最も手軽（画面は 30 分ごと＋復帰時に自動更新）。
+
+1. Microsoft Edge で公開URL `https://23ed137n-cmyk.github.io/diplomacy-bliefing-/` を開く。
+2. 右上「…」→ **アプリ → このサイトをアプリとしてインストール**。
+3. インストール時に「タスクバーにピン留め」「スタートにピン留め」「起動時に開く」を選べる。
+   スタートのタイルが実質のホーム画面ウィジェット代わりになり、1クリックで開ける。
+4. よりデスクトップ常駐の“ウィジェット感”が欲しい場合は、Microsoft Store の
+   「Widget Launcher」等、URL を表示できるデスクトップウィジェットアプリに上記URLを
+   設定する方法もある（サードパーティ製）。
 
 ### `data.json` のスキーマ
 

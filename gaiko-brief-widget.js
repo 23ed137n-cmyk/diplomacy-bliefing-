@@ -5,7 +5,10 @@
 // 空のままでも、iCloud Drive の Scriptable フォルダに置いた
 // gaiko-brief.json を読みます。
 
-const SOURCE_URL = "";              // 例: "https://drive.google.com/uc?export=download&id=xxxx"
+const SOURCE_URL = "https://23ed137n-cmyk.github.io/diplomacy-bliefing-/gaiko-brief.json";
+// ↑ GitHub Pages 公開URL。Drive を使う場合は
+//   "https://drive.google.com/uc?export=download&id=xxxx" に置き換える。
+// 空にすると iCloud Drive の Scriptable フォルダの gaiko-brief.json を読む。
 const LOCAL_FILE = "gaiko-brief.json";
 const STALE_HOURS = 26;             // これを超えたら「更新なし」を表示
 

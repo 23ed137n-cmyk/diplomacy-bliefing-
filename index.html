@@ -4,6 +4,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>外交ブリーフィング</title>
+  <meta name="theme-color" content="#0b1120">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="外交ブリーフ">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" type="image/svg+xml" href="icon.svg">
+  <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
+  <link rel="apple-touch-icon" href="icon-192.png">
   <style>
     :root {
       --bg: #0b1120;
@@ -346,18 +354,37 @@
         items.length ? "" : "表示できる項目がありません。";
     }
 
-    fetch("data.json", { cache: "no-store" })
-      .then((r) => {
-        if (!r.ok) throw new Error("HTTP " + r.status);
-        return r.json();
-      })
-      .then(render)
-      .catch((err) => {
-        document.getElementById("updated").textContent = "";
-        document.getElementById("summary").textContent = "";
-        document.getElementById("status").textContent =
-          "データの読み込みに失敗しました: " + err.message;
-      });
+    // ウィジェット用途：読み込みを関数化し、定期＆復帰時に自動更新する
+    const REFRESH_MS = 30 * 60 * 1000; // 30分ごと
+    let lastLoaded = 0;
+
+    function load() {
+      return fetch("data.json", { cache: "no-store" })
+        .then((r) => {
+          if (!r.ok) throw new Error("HTTP " + r.status);
+          return r.json();
+        })
+        .then((data) => {
+          render(data);
+          lastLoaded = Date.now();
+        })
+        .catch((err) => {
+          // 既に表示中のデータがある場合は残し、初回のみエラー表示
+          if (!lastLoaded) {
+            document.getElementById("updated").textContent = "";
+            document.getElementById("summary").textContent = "";
+            document.getElementById("status").textContent =
+              "データの読み込みに失敗しました: " + err.message;
+          }
+        });
+    }
+
+    load();
+    setInterval(load, REFRESH_MS);
+    // アプリ/タブに戻ったとき、前回から10分以上経っていれば更新
+    document.addEventListener("visibilitychange", () => {
+      if (!document.hidden && Date.now() - lastLoaded > 10 * 60 * 1000) load();
+    });
   </script>
 </body>
 </html>
