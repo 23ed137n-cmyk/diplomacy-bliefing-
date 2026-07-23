@@ -45,6 +45,25 @@ iPhone ウィジェットの両方がその JSON を読み込んで見出しを�
 - `priority: true` の項目は一覧の先頭に、強調表示（赤系）＋★付きで表示されます。
 - それ以外は元の並び順を保って表示されます。
 
+## Claude Code スキル（Agent Skills）
+
+このリポジトリには [anthropics/skills](https://github.com/anthropics/skills) の
+プラグインマーケットプレイス（`anthropic-agent-skills`）を `.claude/settings.json` で
+登録済みです。Claude Code でこのフォルダを開くと、以下のプラグイン（全17スキル）が
+利用可能になります。
+
+- `document-skills` — `xlsx` / `docx` / `pptx` / `pdf`
+- `example-skills` — `algorithmic-art` / `brand-guidelines` / `canvas-design` /
+  `doc-coauthoring` / `frontend-design` / `internal-comms` / `mcp-builder` /
+  `skill-creator` / `slack-gif-creator` / `theme-factory` /
+  `web-artifacts-builder` / `webapp-testing`
+- `claude-api` — `claude-api`
+
+ターミナルの Claude Code CLI では `/plugin` でも管理できます。クラウド/Web セッションでは
+`.claude/settings.json` の `enabledPlugins` で宣言する方式が公式に案内されており、
+本リポジトリはその方式を採用しています。不要なプラグインは `enabledPlugins` から
+該当行を削除すれば無効化できます。
+
 ## ローカルでの確認
 
 `fetch` を使うため、ファイルを直接開くのではなくローカルサーバー経由で開いてください。
