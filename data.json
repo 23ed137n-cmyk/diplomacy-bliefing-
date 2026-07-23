@@ -1,14 +1,14 @@
 {
-  "updated": "2026-07-21T06:00:00+09:00",
+  "updated": "2026-07-23T06:00:00+09:00",
   "url": "",
   "items": [
-    { "tag": "南シナ海", "title": "茂木外相マニラ入り、ASEAN外相会議で対中連携探る", "priority": true },
-    { "tag": "日比関係", "title": "日比海洋交渉に中国反発、台湾東方で警戒", "priority": false },
-    { "tag": "東シナ海", "title": "東シナ海の現状変更、ASEAN会議で懸念共有へ", "priority": false },
-    { "tag": "経済安保", "title": "米232条・重要鉱物、対日供給網に影響継続", "priority": false },
-    { "tag": "多国間", "title": "南シナ海仲裁10年、14か国が一方的行動に反対", "priority": false },
-    { "tag": "中東", "title": "ガザ、停戦後も空爆継続と報道", "priority": false },
-    { "tag": "朝鮮半島", "title": "北朝鮮問題、ASEAN関連会合で協議へ", "priority": false },
-    { "tag": "国内政治", "title": "国家情報局が発足へ、特別国会は会期延長論", "priority": false }
+    { "tag": "ASEAN+3", "title": "茂木外相、日中韓ASEAN会議に出席 エネ安保・オンライン詐欺対策で協力発信", "priority": true },
+    { "tag": "日中関係", "title": "日中外相の直接会談は見送りの公算 台湾めぐる高市首相答弁で関係冷却", "priority": true },
+    { "tag": "日ASEAN", "title": "日ASEAN外相会議、茂木氏が共同議長「FOIP実現の中核はASEAN」", "priority": false },
+    { "tag": "南シナ海", "title": "南シナ海仲裁判断10周年、茂木外相が法の支配の順守求める談話", "priority": false },
+    { "tag": "多国間", "title": "ASEAN関連会議、東シナ海・南シナ海・北朝鮮・ミャンマー・中東・ウクライナを協議", "priority": false },
+    { "tag": "朝鮮半島", "title": "北朝鮮問題、ASEAN関連会合で地域の懸念を共有", "priority": false },
+    { "tag": "中国", "title": "王毅外相、マニラ後にキルギス訪問 SCO外相会議へ（23〜25日）", "priority": false },
+    { "tag": "経済安保", "title": "オンライン詐欺・エネルギー分野で日本が地域協力を主導", "priority": false }
   ]
 }
