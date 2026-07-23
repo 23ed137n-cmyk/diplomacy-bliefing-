@@ -2,7 +2,7 @@
   "updated": "2026-07-23T06:00:00+09:00",
   "url": "",
   "items": [
-    { "region": "日本", "tag": "ASEAN", "title": "茂木外相、ASEAN外相会議で防衛・海洋協力の強化を表明 中国の強硬姿勢に懸念（マニラ、7/22）", "priority": true, "confidence": "高", "sourceName": "Japan Today（共同通信）", "source": "https://japantoday.com/category/politics/update2-japan-vows-stronger-defense-cooperation-with-asean-amid-china-concerns" },
+    { "region": "日本", "tag": "ASEAN+3", "title": "第23回ASEAN+3(日中韓)外相会議、茂木外相が出席 エネルギー安保・オンライン詐欺対策で協力発信（マニラ、7/23）", "priority": true, "confidence": "高", "sourceName": "外務省", "source": "https://www.mofa.go.jp/mofaj/a_o/rp/page6_000724.html" },
     { "region": "日本", "tag": "クアッド", "title": "日米豪印クアッド外相、南シナ海の海洋安全保障を重視 中国名指しは回避（マニラ、7/22）", "priority": false, "confidence": "高", "sourceName": "The Japan Times", "source": "https://www.japantimes.co.jp/news/2026/07/22/asia-pacific/politics/quad-asean-maritime-security-china/" },
     { "region": "ASEAN", "tag": "日ASEAN", "title": "日ASEAN外相会議、茂木外相とシンガポール外相が共同議長 FOIP・AOIPの推進で一致（マニラ、7/22）", "priority": false, "confidence": "高", "sourceName": "外務省", "source": "https://www.mofa.go.jp/mofaj/a_o/rp/pageit_000001_03091.html" },
     { "region": "中国", "tag": "日中関係", "title": "ASEAN会議で日中外相の接触に注目 台湾巡る高市首相答弁で関係は冷却", "priority": true, "confidence": "中", "sourceName": "The Japan Times", "source": "https://www.japantimes.co.jp/news/2026/07/20/japan/politics/japan-china-motegi-wang-asean/" },
