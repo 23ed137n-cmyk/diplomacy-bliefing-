@@ -60,16 +60,16 @@
     }
     .summary b { color: var(--accent); font-weight: 600; }
 
-    section.group { margin-top: 28px; }
+    section.group { margin-top: 26px; }
     .group-head {
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 9px;
       margin: 0 0 12px;
-      font-size: 0.9rem;
+      font-size: 0.95rem;
       font-weight: 700;
-      letter-spacing: 0.06em;
-      color: var(--muted);
+      letter-spacing: 0.04em;
+      color: var(--text);
     }
     .group-head .count {
       margin-left: auto;
@@ -77,21 +77,20 @@
       font-weight: 500;
       font-size: 0.8rem;
     }
-    .group-head.is-priority { color: #fca5a5; }
-    .group-head .dot {
-      width: 9px; height: 9px; border-radius: 50%;
+    .group-head .bar {
+      width: 4px; height: 18px; border-radius: 2px;
       background: var(--accent);
       display: inline-block;
     }
-    .group-head.is-priority .dot { background: var(--priority-border); }
+    .group-head.has-priority .bar { background: var(--priority-border); }
 
     ul { list-style: none; margin: 0; padding: 0; }
     li {
       background: var(--card);
       border: 1px solid var(--border);
       border-radius: 12px;
-      padding: 14px 16px;
-      margin-bottom: 10px;
+      padding: 13px 16px;
+      margin-bottom: 9px;
       display: flex;
       gap: 14px;
       align-items: flex-start;
@@ -131,7 +130,7 @@
     li.priority .tag { background: #991b1b; color: #fecaca; }
     .star { color: #fbbf24; font-size: 0.85rem; }
     .title {
-      font-size: 1.04rem;
+      font-size: 1.03rem;
       font-weight: 500;
       word-break: break-word;
     }
@@ -144,7 +143,7 @@
     }
     @media (max-width: 480px) {
       h1 { font-size: 1.35rem; }
-      .title { font-size: 1rem; }
+      .title { font-size: 0.98rem; }
       li { padding: 12px 13px; gap: 10px; }
     }
   </style>
@@ -164,6 +163,14 @@
   </div>
 
   <script>
+    // 地域の表示順（このブリーフィングの区分）
+    const REGION_ORDER = [
+      "日本", "ASEAN", "中国", "朝鮮半島", "西アジア", "中東",
+      "東アフリカ", "西アフリカ",
+      "西ヨーロッパ", "東ヨーロッパ", "北ヨーロッパ", "南ヨーロッパ",
+      "ロシア", "アメリカ", "北米", "中南米", "大洋州"
+    ];
+
     function formatUpdated(iso) {
       if (!iso) return "";
       const d = new Date(iso);
@@ -173,9 +180,9 @@
              `${pad(d.getHours())}:${pad(d.getMinutes())}`;
     }
 
-    function createItem(item, number, isPriority) {
+    function createItem(item, number) {
       const li = document.createElement("li");
-      if (isPriority) li.classList.add("priority");
+      if (item.priority) li.classList.add("priority");
 
       const num = document.createElement("span");
       num.className = "num";
@@ -190,7 +197,7 @@
       tag.className = "tag";
       tag.textContent = item.tag || "—";
       meta.appendChild(tag);
-      if (isPriority) {
+      if (item.priority) {
         const star = document.createElement("span");
         star.className = "star";
         star.textContent = "★";
@@ -209,25 +216,26 @@
       return li;
     }
 
-    function createSection(label, items, isPriority, startNo) {
+    function createSection(region, items, startNo) {
+      const hasPriority = items.some((it) => it.priority === true);
       const section = document.createElement("section");
       section.className = "group";
 
       const head = document.createElement("div");
-      head.className = "group-head" + (isPriority ? " is-priority" : "");
-      const dot = document.createElement("span");
-      dot.className = "dot";
+      head.className = "group-head" + (hasPriority ? " has-priority" : "");
+      const bar = document.createElement("span");
+      bar.className = "bar";
       const labelSpan = document.createElement("span");
-      labelSpan.textContent = label;
+      labelSpan.textContent = region;
       const count = document.createElement("span");
       count.className = "count";
       count.textContent = items.length + "件";
-      head.appendChild(dot);
+      head.appendChild(bar);
       head.appendChild(labelSpan);
       head.appendChild(count);
 
       const ul = document.createElement("ul");
-      items.forEach((item, i) => ul.appendChild(createItem(item, startNo + i, isPriority)));
+      items.forEach((item, i) => ul.appendChild(createItem(item, startNo + i)));
 
       section.appendChild(head);
       section.appendChild(ul);
@@ -239,21 +247,35 @@
       document.getElementById("updated").textContent =
         "更新: " + (formatUpdated(data.updated) || "不明");
 
-      const priority = items.filter((it) => it.priority === true);
-      const rest = items.filter((it) => it.priority !== true);
+      // 地域ごとにまとめる
+      const byRegion = new Map();
+      for (const it of items) {
+        const r = it.region || "その他";
+        if (!byRegion.has(r)) byRegion.set(r, []);
+        byRegion.get(r).push(it);
+      }
 
+      // 表示順：規定の地域順 → 規定外はその後ろ
+      const ordered = REGION_ORDER.filter((r) => byRegion.has(r));
+      for (const r of byRegion.keys()) {
+        if (!ordered.includes(r)) ordered.push(r);
+      }
+
+      const priorityCount = items.filter((it) => it.priority === true).length;
       document.getElementById("summary").innerHTML =
-        `重要 <b>${priority.length}</b> 件 ／ 全 <b>${items.length}</b> 件`;
+        `重要 <b>${priorityCount}</b> 件 ／ 全 <b>${items.length}</b> 件 ／ <b>${ordered.length}</b> 地域`;
 
       const content = document.getElementById("content");
       content.innerHTML = "";
       let no = 1;
-      if (priority.length) {
-        content.appendChild(createSection("最重要", priority, true, no));
-        no += priority.length;
-      }
-      if (rest.length) {
-        content.appendChild(createSection("そのほかのニュース", rest, false, no));
+      for (const r of ordered) {
+        // 各地域内は重要を先頭に、元の並び順を保持
+        const group = byRegion.get(r)
+          .map((item, i) => ({ item, i }))
+          .sort((a, b) => (b.item.priority === true) - (a.item.priority === true) || a.i - b.i)
+          .map((x) => x.item);
+        content.appendChild(createSection(r, group, no));
+        no += group.length;
       }
 
       document.getElementById("status").textContent =

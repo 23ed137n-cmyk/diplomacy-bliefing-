@@ -158,8 +158,9 @@ function row(w, item) {
   const body = line.addStack();
   body.layoutVertically();
 
-  if (item.tag) {
-    const tag = body.addText(String(item.tag));
+  const label = [item.region, item.tag].filter(Boolean).join("　");
+  if (label) {
+    const tag = body.addText(label);
     tag.font = new Font(GOTHIC_B, 9);
     tag.textColor = INKSOFT;
     tag.lineLimit = 1;
