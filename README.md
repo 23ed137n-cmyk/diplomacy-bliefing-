@@ -24,10 +24,15 @@ PC と iPhone の両方に「同じ1つの公開URL」を読ませるのが基�
 ### 1. GitHub Pages を有効化（配信元）
 
 1. GitHub のリポジトリ → **Settings → Pages**。
-2. **Source** を「Deploy from a branch」にし、Branch = 公開したいブランチ（`main` など）、
-   フォルダ = **/(root)** を選んで Save。
-   - まだ既定ブランチに取り込んでいない場合は、作業ブランチを `main` にマージしてから
-     設定するのが簡単（または Pages の Branch に作業ブランチを直接指定してもよい）。
+2. **Source** を「Deploy from a branch」にし、Branch = **サイト一式が入っているブランチ**
+   （現状は `claude/plugin-marketplace-anthropic-skills-aieyq1`）、フォルダ = **/(root)** を
+   選んで Save。
+   - このリポジトリには `main` が無く、`index.html` などは上記ブランチにしか無い。
+     `main` や既定ブランチを選ぶと中身が無く 404 になるので注意。
+   - 恒久運用するなら、専用の `gh-pages` ブランチにサイト一式を置いて Pages をそこに
+     向けると安定する（下記「トラブル時」参照）。
+   - 非公開（Private）リポジトリの場合、GitHub Pages は **Pro 以上**が必要。無料プランなら
+     リポジトリを Public にするか、Pro にする。
 3. 数十秒〜数分で公開される。公開URLは:
    - 画面: `https://23ed137n-cmyk.github.io/diplomacy-bliefing-/`
    - データ: `https://23ed137n-cmyk.github.io/diplomacy-bliefing-/gaiko-brief.json`
