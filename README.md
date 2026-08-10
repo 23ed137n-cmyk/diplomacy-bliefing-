@@ -12,6 +12,9 @@ iPhone ウィジェットの両方がその JSON を読み込んで見出しを�
   Google Drive の `gaiko-brief.json`（またはローカルの同名ファイル）を読む
 - ブリーフィング生成タスクは、本文作成後に同じスキーマの `gaiko-brief.json` を
   出力する（Google Drive 上書き保存）。`data.json` はそのブラウザ確認用サンプル
+- `diplomats.md` — 日本の著名な外交官のプロフィール集。
+  「外交官の視点から〜して」と指示されたときに、その人物になりきって
+  論評するための人物資料と運用ルール
 
 ## iPhone ウィジェットの設定（`gaiko-brief-widget.js`）
 
