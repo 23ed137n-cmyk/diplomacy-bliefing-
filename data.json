@@ -1,21 +1,16 @@
 {
-  "updated": "2026-07-23T06:00:00+09:00",
+  "updated": "2026-08-10T12:00:00+09:00",
   "url": "",
   "items": [
-    { "region": "日本", "tag": "ASEAN+3", "title": "第23回ASEAN+3(日中韓)外相会議、茂木外相が出席 エネルギー安保・オンライン詐欺対策で協力発信（マニラ、7/23）", "priority": true, "confidence": "高", "sourceName": "外務省", "source": "https://www.mofa.go.jp/mofaj/a_o/rp/page6_000724.html" },
-    { "region": "日本", "tag": "クアッド", "title": "日米豪印クアッド外相、南シナ海の海洋安全保障を重視 中国名指しは回避（マニラ、7/22）", "priority": false, "confidence": "高", "sourceName": "The Japan Times", "source": "https://www.japantimes.co.jp/news/2026/07/22/asia-pacific/politics/quad-asean-maritime-security-china/" },
-    { "region": "ASEAN", "tag": "日ASEAN", "title": "日ASEAN外相会議、茂木外相とシンガポール外相が共同議長 FOIP・AOIPの推進で一致（マニラ、7/22）", "priority": false, "confidence": "高", "sourceName": "外務省", "source": "https://www.mofa.go.jp/mofaj/a_o/rp/pageit_000001_03091.html" },
-    { "region": "中国", "tag": "日中関係", "title": "ASEAN会議で日中外相の接触に注目 台湾巡る高市首相答弁で関係は冷却", "priority": true, "confidence": "中", "sourceName": "The Japan Times", "source": "https://www.japantimes.co.jp/news/2026/07/20/japan/politics/japan-china-motegi-wang-asean/" },
-    { "region": "朝鮮半島", "tag": "北朝鮮", "title": "金正恩氏、ソウルを射程に収める新型兵器の試験を視察（6月末〜7月上旬）", "priority": true, "confidence": "高", "sourceName": "The Korea Times", "source": "https://www.koreatimes.co.kr/foreignaffairs/northkorea/20260626/n-koreas-kim-oversees-tests-of-key-weapons-seen-as-aimed-at-s-korea" },
-    { "region": "西アジア", "tag": "SCO", "title": "上海協力機構(SCO)外相理事会、キルギス・チョルポンアタで開催（7/23〜24） 王毅外相出席、9月首脳会議へ準備", "priority": false, "confidence": "高", "sourceName": "中国外交部", "source": "https://www.fmprc.gov.cn/eng/xw/zyxw/202607/t20260720_11986315.html" },
-    { "region": "中東", "tag": "イスラエル", "title": "イスラエル、クネセトが解散し10/27総選挙へ ネタニヤフ氏はエイゼンコット氏に劣勢（7/17）", "priority": true, "confidence": "高", "sourceName": "The Times of Israel", "source": "https://www.timesofisrael.com/knesset-expected-to-dissolve-july-17-paving-way-for-october-27-election/" },
-    { "region": "東アフリカ", "tag": "スーダン", "title": "EU、スーダン産金の禁輸を採択 内戦資金の遮断狙う（EU理事会、7/13）", "priority": false, "confidence": "高", "sourceName": "EU理事会（Consilium）", "source": "https://www.consilium.europa.eu/en/press/press-releases/2026/07/13/sudan-council-strengthens-eu-sanctions-regime-by-targeting-gold-trade/" },
-    { "region": "東アフリカ", "tag": "コンゴ民主共和国", "title": "コンゴ民主のエボラ、過去最速で拡大 確認2473人・死者999人とWHOが警告（7/21時点）", "priority": true, "confidence": "高", "sourceName": "UN News", "source": "https://news.un.org/en/story/2026/07/1167983" },
-    { "region": "西ヨーロッパ", "tag": "ECB", "title": "欧州中央銀行(ECB)、7/23に政策金利を決定 市場は2.25%据え置きを予想", "priority": false, "confidence": "中", "sourceName": "Finance Calendar", "source": "https://www.financecalendar.com/event/ecb-rate-decision-july-2026/" },
-    { "region": "西ヨーロッパ", "tag": "熱波", "title": "欧州の記録的熱波、独で史上最高41.7℃ WHO「6/21以降の超過死亡1300人超」", "priority": false, "confidence": "高", "sourceName": "WMO（世界気象機関）", "source": "https://wmo.int/media/news/record-breaking-heat-spreads-through-europe" },
-    { "region": "東ヨーロッパ", "tag": "ウクライナ", "title": "ゼレンスキー大統領、軍最高指導部を刷新 抗議デモの中で司令官を交代（7/21〜22）", "priority": true, "confidence": "中", "sourceName": "NPR", "source": "https://www.npr.org/2026/07/21/g-s1-134849/ukraine-military-chief-fired-protests" },
-    { "region": "ロシア", "tag": "戦況", "title": "ウクライナ、露製油所への長距離攻撃を継続 露はキーウを再攻撃、停戦協議は停滞（7月上旬）", "priority": false, "confidence": "中", "sourceName": "ISW（Critical Threats）", "source": "https://www.criticalthreats.org/analysis/russian-offensive-campaign-assessment-july-6-2026" },
-    { "region": "アメリカ", "tag": "通商", "title": "トランプ政権、通商法301条で新関税へ 10%関税は7/24失効、約60カ国に最大12.5%案（7/21）", "priority": true, "confidence": "高", "sourceName": "CNBC", "source": "https://www.cnbc.com/2026/07/21/trump-trade-tariffs-greer-section-301.html" },
-    { "region": "大洋州", "tag": "太平洋島嶼国", "title": "クアッド外相、太平洋島嶼国支援とPIF「2050戦略」への強い関与を確認（マニラ、7/22）", "priority": false, "confidence": "高", "sourceName": "豪外相府", "source": "https://www.foreignminister.gov.au/minister/penny-wong/media-release/joint-press-release-cooperation-asean-quad-foreign-ministers" }
+    { "region": "日本", "tag": "中南米外交", "title": "茂木外相、中南米・カリブ4カ国歴訪を終える（8/2〜9） 重要鉱物の供給網強化とエネルギー安保で協力推進", "priority": true, "confidence": "高", "sourceName": "外務省", "source": "https://www.mofa.go.jp/mofaj/la_c/m_ca_c/pageit_000001_03128.html" },
+    { "region": "日本", "tag": "日中関係", "title": "台湾有事めぐる首相答弁で冷却した日中関係、修復が26年外交の焦点 11月APECが節目に", "priority": false, "confidence": "中", "sourceName": "日本経済新聞", "source": "https://www.nikkei.com/article/DGXZQOUA221KW0S5A221C2000000/" },
+    { "region": "中南米", "tag": "パナマ", "title": "茂木外相、ムリーノ大統領と会談 パナマ運河の安全な利用確保と法の支配で一致（8/5）", "priority": true, "confidence": "高", "sourceName": "NHK", "source": "https://news.web.nhk/newsweb/na/na-k10015198121000" },
+    { "region": "中南米", "tag": "メキシコ", "title": "茂木外相、エブラル・メキシコ経済相と会談 サプライチェーン強靱化で連携（8/3）", "priority": false, "confidence": "高", "sourceName": "外務省", "source": "https://www.mofa.go.jp/mofaj/la_c/m_ca_c/mx/pageit_000001_00003.html" },
+    { "region": "東ヨーロッパ", "tag": "ウクライナ", "title": "ウクライナ、現戦線での停戦案に同意 露の実効支配を事実上容認し交渉継続へ", "priority": true, "confidence": "中", "sourceName": "Wikipedia（2026 Russo-Ukrainian truce）", "source": "https://en.wikipedia.org/wiki/2026_Russo-Ukrainian_truce" },
+    { "region": "ロシア", "tag": "停戦交渉", "title": "プーチン大統領、停戦の見返りに不可逆的な譲歩を要求 エネルギー施設への相互攻撃も継続", "priority": false, "confidence": "中", "sourceName": "FDD Overnight Brief", "source": "https://www.fdd.org/overnight-brief/august-5-2026/" },
+    { "region": "中東", "tag": "ガザ", "title": "「平和の理事会」特使がネタニヤフ首相と会談 ガザ武装解除で協議、攻撃停止を要請", "priority": true, "confidence": "中", "sourceName": "FDD Overnight Brief", "source": "https://www.fdd.org/overnight-brief/august-4-2026/" },
+    { "region": "中国", "tag": "台湾", "title": "中国の対台湾圧力が継続 軍事・経済両面での動向を米シンクタンクが分析（8/7）", "priority": false, "confidence": "中", "sourceName": "AEI", "source": "https://www.aei.org/commentary/china-taiwan-update-august-7-2026/" },
+    { "region": "アメリカ", "tag": "APEC", "title": "APEC首脳会議、11月に中国で開催へ 日米中の首脳外交の節目に", "priority": false, "confidence": "高", "sourceName": "Wikipedia（APEC China 2026）", "source": "https://en.wikipedia.org/wiki/APEC_China_2026" },
+    { "region": "朝鮮半島", "tag": "日韓関係", "title": "日韓シャトル外交が進行中 1月の李在明大統領訪日を起点に関係強化を継続", "priority": false, "confidence": "中", "sourceName": "外務省", "source": "https://www.mofa.go.jp/mofaj/a_o/na/kr/pageit_000001_02697.html" }
   ]
 }
