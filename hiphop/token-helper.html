@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Music User Token を取る</title>
+<style>
+  body { margin:0; font-family:"Hiragino Kaku Gothic ProN","Yu Gothic",system-ui,sans-serif;
+         background:#0f172a; color:#e2e8f0; line-height:1.7; }
+  .wrap { max-width:720px; margin:0 auto; padding:32px 16px 64px; }
+  h1 { font-size:1.4rem; border-bottom:2px solid #f472b6; padding-bottom:12px; }
+  p, li { color:#cbd5e1; font-size:0.95rem; }
+  code, textarea, output { font-family:ui-monospace,SFMono-Regular,Menlo,monospace; }
+  textarea { width:100%; min-height:90px; background:#1e293b; color:#e2e8f0;
+             border:1px solid #334155; border-radius:8px; padding:10px; font-size:0.8rem; }
+  button { background:#f472b6; color:#0f172a; border:0; border-radius:8px;
+           padding:11px 22px; font-size:0.95rem; font-weight:700; cursor:pointer; margin-top:12px; }
+  button:disabled { opacity:0.45; cursor:not-allowed; }
+  output { display:block; background:#1e293b; border:1px solid #334155; border-radius:8px;
+           padding:12px; margin-top:16px; font-size:0.78rem; word-break:break-all; min-height:1.4em; }
+  .muted { color:#94a3b8; font-size:0.85rem; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Music User Token を取る</h1>
+
+  <p class="muted">
+    このページは手元で開いて使います（<code>python3 -m http.server 8000</code> などローカルサーバー経由）。
+    取得したトークンはこの画面に出るだけで、どこにも送信されません。
+  </p>
+
+  <ol>
+    <li>Apple Developer Program の MusicKit キーから作った <strong>Developer Token</strong>（JWT）を貼る</li>
+    <li>「Apple ID で認可」を押して、Apple Music 契約中の Apple ID でサインインする</li>
+    <li>出てきた Music User Token を <code>APPLE_MUSIC_USER_TOKEN</code> に入れる</li>
+  </ol>
+
+  <textarea id="dev" placeholder="eyJhbGciOiJFUzI1NiIsImtpZCI6..." spellcheck="false"></textarea>
+  <button id="go">Apple ID で認可</button>
+
+  <output id="out"></output>
+  <p class="muted">Music User Token の有効期限はおおよそ半年です。切れたらこのページで取り直してください。</p>
+</div>
+
+<script src="https://js-cdn.music.apple.com/musickit/v3/musickit.js" data-web-components async></script>
+<script>
+  const out = document.getElementById("out");
+  const btn = document.getElementById("go");
+
+  btn.addEventListener("click", async () => {
+    const developerToken = document.getElementById("dev").value.trim();
+    if (!developerToken) {
+      out.textContent = "Developer Token を貼ってください。";
+      return;
+    }
+
+    btn.disabled = true;
+    out.textContent = "認可中…";
+    try {
+      const music = await MusicKit.configure({
+        developerToken,
+        app: { name: "hiphop-new-releases", build: "1.0" },
+      });
+      const userToken = await music.authorize();
+      out.textContent = "APPLE_MUSIC_USER_TOKEN=" + userToken;
+    } catch (err) {
+      out.textContent = "失敗: " + (err && err.message ? err.message : String(err));
+    } finally {
+      btn.disabled = false;
+    }
+  });
+</script>
+</body>
+</html>

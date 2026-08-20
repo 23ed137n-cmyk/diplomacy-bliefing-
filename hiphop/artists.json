@@ -1,0 +1,7 @@
+{
+  "_note": "Apple Music でフォロー中のアーティスト。Apple はフォロー一覧を API 公開していないため、ここは手で維持する。appleArtistId は省略可（名前から自動解決される）。",
+  "storefront": "jp",
+  "genreKeywords": ["Hip-Hop", "Rap", "ヒップホップ", "ラップ"],
+  "following": [],
+  "introduced": []
+}
